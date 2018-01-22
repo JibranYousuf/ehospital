@@ -1,0 +1,22 @@
+<app-superadmin></app-superadmin>
+<table class="table">
+    <thead> 
+  <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Username</th> 
+      <th>User Type</th>
+  </tr>
+  </thead>
+  
+    <tr  *ngFor="let user of data; let i = index"> 
+      <ng-container *ngIf="user.userType=='Patient'" >
+  
+      <td>{{i + 1}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.userType}}</td>
+      </ng-container>
+      </tr>
+  
+</table>
