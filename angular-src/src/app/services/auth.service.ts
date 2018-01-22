@@ -21,6 +21,7 @@ export class AuthService {
     return this.http.post('http://localhost:3000/users/register', user, {headers: headers})
     .map(res => res.json());
   }
+  
   UpdateUser(url, data) {
     let headers = new Headers();
     console.log(data, "data")
