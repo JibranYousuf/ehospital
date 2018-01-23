@@ -3,6 +3,7 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
 import { $ } from 'protractor';
+import { get } from 'http';
 
  
 @Injectable()
@@ -26,15 +27,15 @@ export class AuthService {
     let headers = new Headers();
     console.log(data, "data")
     return this.http.put('http://localhost:3000/users/'+url, data, {headers: headers}).
-      map(data => {
-        console.log(data.json(),"json data in edit");
-        return data.json()
+      map((data : any) => {
+        return data._body.json();
+        // console.log(data.json(),"json data in edit");
+        // return data.json()
       })
   }
   deleteUser(_id){
     let headers = new Headers();
-    return this.http.delete(this.url+_id)
-    .map(res => res.json());
+    return this.http.delete(this.url+'delete/'+_id)
 }
 
   authenticateUser(user){
@@ -51,8 +52,15 @@ export class AuthService {
     headers.append('Content-Type','application/json');
     return this.http.get('http://localhost:3000/users/profile', {headers: headers})
     .map(function (res) { return res.json(); }
-  );
+  )
   }
+  getUser(username){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    return this.http.get(this.url+'getUser/?username='+username, {headers: headers})
+    .map(function (res) { return res.json(); }
+    )}
+  
   storeUserData(token, user){
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));

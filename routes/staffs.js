@@ -3,28 +3,28 @@ const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
-const User = require('../models/user');
+const Staff = require('../models/staff');
 
 //Register
 router.post('/register', (req,res,next) =>{
-let newUser = new User({
+let newStaff = new Staff({
     name: req.body.name,
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
     userType: req.body.userType
 });
-    User.addUser(newUser, (err, user)=>{
+    Staff.addStaff(newStaff, (err, staff)=>{
         if(err){
                 res.json(
                     {
-                    success: false, msg: 'failed to register user'
+                    success: false, msg: 'failed to register staff'
                     });
                 }
         else{
             res.json(
                 {
-                    success: true, msg: 'User Registered'
+                    success: true, msg: 'Staff Added'
                 });
             }
     });
@@ -35,23 +35,23 @@ router.post('/authenticate', (req,res) =>{
    
         const username = req.body.username;
         const password = req.body.password; 
-        User.getUserByUsername(username, (err, user) =>{
+        Staff.getUserByUsername(username, (err, staff) =>{
         if(err) throw err;
-        if(!user){
+        if(!staff){
             return res.json({
-                success: false, msg: 'user not found'
+                success: false, msg: 'staff not found'
                             });
         }
-        User.comparePassword(password, user.password, (err, isMatch) =>{
+        Staff.comparePassword(password, staff.password, (err, isMatch) =>{
             if(err) throw err;
             if(isMatch){
                 let payload = {
-                    _id: user._id,
-                    name: user.name,
-                    username: user.username,
-                    email: user.email,
-                    password: user.password,
-                    userType: user.userType
+                    _id: staff._id,
+                    name: staff.name,
+                    username: staff.username,
+                    email: staff.email,
+                    password: staff.password,
+                    userType: staff.userType
                 };
                 const token = jwt.sign(payload, config.secret, {
                     expiresIn: 604800  //1 week
@@ -59,12 +59,12 @@ router.post('/authenticate', (req,res) =>{
                 return res.json({
                     success: true,
                     token: 'bearer '+ token,
-                    user: {
-                        id: user._id,
-                        name: user.name,
-                        username: user.username,
-                        email : user.email,
-                        userType : user.userType,
+                    staff: {
+                        id: staff._id,
+                        name: staff.name,
+                        username: staff.username,
+                        email : staff.email,
+                        userType : staff.userType,
                     }
                 });
             } else {
@@ -76,57 +76,56 @@ router.post('/authenticate', (req,res) =>{
 
 //Profile
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
-    res.json({user: req.user});
+    res.json({staff: req.staff});
   });
 
 router.get('/getall', (req, res, next) => {
-    User.find(function(err, getData) {
+    Staff.find(function(err, getStaffData) {
 
         // if there is an error retrieving, send the error. 
                         // nothing after res.send(err) will execute
         if (err)
             res.send(err);
         else{
-        res.json({ getData: getData }); 
+        res.json({ getStaffData: getStaffData }); 
     }
     });
 });
 
 router.get('/getuser', function (req, res, next) {
       
-    User.findOne({ username: req.query.username },function (err, user) {
+    Staff.findOne({ username: req.query.username },function (err, staff) {
         if (err) {
             console.log("username err", err)
             return res.status(500).send(err)
             // return err
         }
-        if(user.username !== req.query.username){
+        if(staff.username !== req.query.username){
             return res.status(404).send('username invalid');
           }
-          console.log("You are Successfully Searched: Welcome ", user.username)
-          console.log("User_id: ", user._id)
-          console.log("User Password: ", user.password)
-          console.log("You created account on: ", user.userType)
-               return res.status(200).send(user);
+          console.log("You are Successfully Searched: Welcome ", staff.username)
+          console.log("User_id: ", staff._id)
+          console.log("Staff Password: ", staff.password)
+          console.log("You created account on: ", staff.userType)
+               return res.status(200).send(staff);
   });
 })
 
 router.put('/update/:id', function (req, res, next) {
       
-    User.findByIdAndUpdate( req.params.id, req.body, {new: true}, function (err, user) {
-        console.log(user);
-        if (err) return res.status(500).send("There was a problem updating the user.");
-        res.status(200).send(user);
+    Staff.findByIdAndUpdate( req.params.id, req.body, {new: true}, function (err, staff) {
+        if (err) return res.status(500).send("There was a problem updating the staff.");
+        res.status(200).send(staff);
   });
 });
 
 router.delete('/delete/:id', function (req, res) {
-    User.findByIdAndRemove(req.params.id, function (err, user) {
+    Staff.findByIdAndRemove(req.params.id, function (err, staff) {
         if (err) { 
-        return res.status(500).send("There was a problem deleting the user.");
+        return res.status(500).send("There was a problem deleting the staff.");
     } else {
-        return res.status(200).send("User "+ user.username +" was deleted.");
-        res.json({ user: user });
+        return res.status(200).send("Staff "+ staff.username +" was deleted.");
+        res.json({ staff: staff });
     }
     });
 });

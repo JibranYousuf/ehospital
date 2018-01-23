@@ -5,7 +5,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database')
-
+// const MongoClient = require('mongodb').MongoClient
 //Connect to Database
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
@@ -25,6 +25,7 @@ const app = express();
 
 const users = require('./routes/users');
 const port = 3000;
+const staffs = require('./routes/staffs');
 
 // CORS Middleware
 app.use(cors());
@@ -42,6 +43,7 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 app.use('/users', users);
+app.use('/staffs', staffs);
 
 // Index Route
 app.get('/', (req,res) =>{

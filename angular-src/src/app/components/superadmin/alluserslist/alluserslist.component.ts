@@ -11,6 +11,17 @@ import { Response } from '@angular/http/src/static_response';
 export class AlluserslistComponent implements OnInit {
   data: Array<any> = [];
   editItemsForm: boolean = false;
+  user: any;
+  name : String;
+  username: String;
+  email: String;
+  password: String;
+  userType: String;
+  dob: String;
+  contactnum: number;
+  age: number;
+  gender: String;
+  _id: any;
   constructor(
     private authService:AuthService,
     private router:Router)
@@ -28,14 +39,14 @@ export class AlluserslistComponent implements OnInit {
         return false;
       });
     }
-    updateUser(user) {
+    onUpdateUser(user){     
       console.log(user, "_id")
       var url = "update" + "/" + user._id
       this.authService.UpdateUser(url, user).subscribe(
         (data) => {
           console.log(data, "fgdfg");
           this.data = data.getData;
-          this.authService.getProfile();
+          this.authService.getUser(user.username);
           this.editItemsForm = false;
         },
         (err) => {
@@ -43,4 +54,13 @@ export class AlluserslistComponent implements OnInit {
         }
       )
     }
+    OnDeleteUser(_id, i: number){
+      this.authService.deleteUser(_id).subscribe(data=> {
+        this.data.splice(i, 1)
+        console.log(data,"data from db")
+      },
+      err => {
+        console.error(err, "error" )
+      }
+    )};
 }

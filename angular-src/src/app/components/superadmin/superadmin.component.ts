@@ -18,7 +18,6 @@ export class SuperadminComponent implements OnInit {
   password: String;
   userType: String;
   user: any;
-  _id:'5a3aaa1da685361dccddbbad';
   constructor( 
     private validateService: ValidateService, 
     private flashMessage:FlashMessagesService,
@@ -68,15 +67,6 @@ export class SuperadminComponent implements OnInit {
 
 
   }
-  OnDeleteUser(_id){
-    this.authService.deleteUser(_id).subscribe(data=> {
-      console.log(data,"data from db")
-      this.user();
-    },
-    err => {
-      console.error(err, "error" )
-    }
-  )};
 
 }    
 
