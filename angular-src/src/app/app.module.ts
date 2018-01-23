@@ -21,7 +21,6 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { DoctorDashboardComponent } from './components/shared/doctor-dashboard/doctor-dashboard.component';
 import { PatientDashboardComponent } from './components/shared/patient-dashboard/patient-dashboard.component';
 import { AdminDashboardComponent } from './components/shared/admin-dashboard/admin-dashboard.component';
-import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
 import { SuperadminComponent } from './components/superadmin/superadmin.component';
 import { AdminslistComponent } from './components/superadmin/adminslist/adminslist.component';
 import { DoctorslistComponent } from './components/superadmin/doctorslist/doctorslist.component';
@@ -57,7 +56,6 @@ const appRoutes : Routes = [
     DoctorDashboardComponent,
     PatientDashboardComponent,
     AdminDashboardComponent,
-    SideNavbarComponent,
     SuperadminComponent,
     AdminslistComponent,
     DoctorslistComponent,
