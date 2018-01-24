@@ -42,12 +42,13 @@ export class AlluserslistComponent implements OnInit {
     onUpdateUser(user){     
       console.log(user, "_id")
       var url = "update" + "/" + user._id
-      this.authService.UpdateUser(url, user).subscribe(
+      this.authService.updateUser(url, user).subscribe(
         (data) => {
           console.log(data, "fgdfg");
           this.data = data.getData;
           this.authService.getUser(user.username);
           this.editItemsForm = false;
+          
         },
         (err) => {
           return err

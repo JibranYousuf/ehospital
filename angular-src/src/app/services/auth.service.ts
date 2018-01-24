@@ -23,10 +23,10 @@ export class AuthService {
     .map(res => res.json());
   }
 
-  UpdateUser(url, data) {
+  updateUser(url, data) {
     let headers = new Headers();
     console.log(data, "data")
-    return this.http.put('http://localhost:3000/users/'+url, data, {headers: headers}).
+    return this.http.put(this.url+url, data, {headers: headers}).
       map((data : any) => {
         return data._body.json();
         // console.log(data.json(),"json data in edit");

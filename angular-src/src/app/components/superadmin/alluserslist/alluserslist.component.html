@@ -46,12 +46,12 @@
                 </modal-footer>
             </modal>
             <button type="button" class="btn btn-primary" (click)="EditUser.open()">Edit</button>
-            <modal #EditUser>
+            <modal #EditUser (ngSubmit)="onUpdateUser(user)">
                 <modal-header>
                     <h1>Edit Profile</h1>
                 </modal-header>
                 <modal-content>
-                    <form (ngSubmit)="onUpdateUser(user)" #editform="ngForm">
+                    <form #myForm="ngForm" (ngSubmit)="onUpdateUser(user)">
                         <div class="col-sm-6" style="display:inline-block">
                             <div class="form-group">
                                 <label>Name</label>
@@ -70,7 +70,7 @@
                                 <input type="text" [(ngModel)]="user.age" name="age" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>Qualification</label>
                                 <input type="text" [(ngModel)]="user.qualification" name="qualification" class="form-control">
                             </div>
                         </div>
@@ -98,10 +98,11 @@
                                 <input type="text" [(ngModel)]="user.contactnum" name="contactnum" class="form-control">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary" (click)="EditUser.close()">Update User</button>
+                        <button type="submit" class="btn btn-success"  >Submit</button>
                     </form>
                 </modal-content>
                 <modal-footer>
+                        
                 </modal-footer>
             </modal>
 

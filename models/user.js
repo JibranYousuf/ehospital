@@ -38,9 +38,14 @@ const UserSchema = mongoose.Schema({
     type: String,
   },
   contactnum:{
-    type: Number,
+    type: String,
   },
-
+  qualification:{
+    type: String,
+  },
+  designation:{
+    type: String,
+  }
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
