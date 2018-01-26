@@ -45,6 +45,19 @@ const UserSchema = mongoose.Schema({
   },
   designation:{
     type: String,
+  },
+  dname:{
+    type: String,
+  },
+  aptname:{
+    type: String,
+  },
+  aptdatecreated:{
+    type: Date,
+    default: Date.now,
+  },
+  aptdate:{
+    type: Date,
   }
 });
 

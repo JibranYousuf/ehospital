@@ -1,154 +1,309 @@
-<div class="container">
-  
-  <div class="panel-group">
-    <div class="panel panel-danger">
-      <div class="panel-heading">See Doctor</div>
-      <div class="panel-body">
-              <div class="container">
-                      
-                      
-                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Click Here</button>
-                    
-                      <!-- Modal -->
-                      <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-                        
-                          <!-- Modal content-->
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title">Modal Header</h4>
-                            </div>
-                            <div class="modal-body">
-                              <p>Some text in the modal.</p>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                          
-                        </div>
-                      </div>
-                      
-                    </div>
-      </div>
-    </div>
-    <br />
-        
-  <div class="panel-group">
-          <div class="panel panel-danger">
-            <div class="panel-heading">See Bill</div>
-            <div class="panel-body">
-                    <div class="container">
-                            
-                            
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Click Here</button>
-                          
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" role="dialog">
-                              <div class="modal-dialog">
-                              
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Modal Header</h4>
-                                  </div>
-                                  <div class="modal-body">
-                                    <p>Some text in the modal.</p>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                  </div>
-                                </div>
-                                
-                              </div>
-                            </div>
-                            
-                          </div>
+<div *ngIf="user">
+  <h1>
+    Hello Patient: {{user.name}}
+  </h1>
+
+  <div class="container">
+
+    <div class="panel-group">
+      <div class="panel panel-danger">
+        <div class="panel-heading">See Doctor</div>
+        <div class="panel-body">
+          <div class="container">
+
+
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Click Here</button>
+
+           
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+
+                
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+
+              </div>
             </div>
+
           </div>
-  </div>
-          <br />
-          
-            
-            <div class="panel-group">
-              <div class="panel panel-danger">
-                <div class="panel-heading">Create Appointments</div>
-                <div class="panel-body">
-                        <div class="container">
-                                
-                                
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Click Here</button>
-                              
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" role="dialog">
-                                  <div class="modal-dialog">
-                                  
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Modal Header</h4>
-                                      </div>
-                                      <div class="modal-body">
-                                        <p>Some text in the modal.</p>
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                      </div>
-                                    </div>
-                                    
-                                  </div>
-                                </div>
-                                
-                              </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="panel-group">
+        <div class="panel panel-danger">
+          <div class="panel-heading">See Bill</div>
+          <div class="panel-body">
+            <div class="container">
+
+
+              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Click Here</button>
+
+             
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                  
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+
                 </div>
               </div>
-              <br />
-                  
-            <div class="panel-group">
-                    <div class="panel panel-danger">
-                      <div class="panel-heading">See Prescription</div>
-                      <div class="panel-body">
-                              <div class="container">
-                                      
-                                      
-                                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Click Here</button>
-                                    
-                                      <!-- Modal -->
-                                      <div class="modal fade" id="myModal" role="dialog">
-                                        <div class="modal-dialog">
-                                        
-                                          <!-- Modal content-->
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                              <h4 class="modal-title">Modal Header</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                              <p>Some text in the modal.</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                          </div>
-                                          
-                                        </div>
-                                      </div>
-                                      
-                                    </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+
+
+      <div class="panel-group">
+        <div class="panel panel-danger">
+          <div class="panel-heading">Create Appointments</div>
+          <div class="panel-body">
+            <div class="container">
+
+              <button type="button" class="btn btn-primary" (click)="CreateAppointment.open()">Create Appointment</button>
+
+              <modal #CreateAppointment (ngSubmit)="onUpdateUser(user)">
+                <modal-header>
+                  <h1>Create Appointment</h1>
+                </modal-header>
+                <modal-content>
+                  <form #myForm="ngForm" (ngSubmit)="onUpdateUser(user)">
+                    <div class="col-sm-6" style="display:inline-block">
+                      <div class="form-group">
+                        <label>Patient Name</label>
+                        <input type="text" [(ngModel)]="user.name" name="name" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label>Patient Username</label>
+                        <input type="text" [(ngModel)]="user.username" name="username" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label>Doctor Name</label>
+                        <input type="text" [(ngModel)]="user.dname" name="dname" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label>Appointment Name</label>
+                        <input type="text" [(ngModel)]="user.aptname" name="aptname" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label>Appointment Date (Created)</label>
+                        <input type="text" [(ngModel)]="user.aptdatecreated" name="aptdatecreated" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label>Appointment Date</label>
+                        <input type="text" [(ngModel)]="user.aptdate" name="aptdate" class="form-control">
                       </div>
                     </div>
+                    <br>
+                    <button type="submit" class="btn btn-success">Create</button>
+                  </form>
+                </modal-content>
+                <modal-footer>
+                </modal-footer>
+              </modal>
+
+
+              <button type="button" class="btn btn-info btn-sm" (click)="ViewAppointments.open()">Click here</button>
+
+             
+              <modal #ViewAppointments>
+                <modal-header>
+                  <h1>View Appointments</h1>
+                </modal-header>
+                <modal-content>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Patient Name</th>
+                        <th>Doctor Name</th>
+                        <th>Appointment Name</th>
+                        <th>Appointment Date (Created)</th>
+                        <th>Appointment Date</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <ng-container *ngFor="let user of data; let i = index">
+                      <tr *ngIf="user.aptname=='Available'">
+
+                        <td>{{i + 1}}</td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.dname}}</td>
+                        <td>{{user.aptname}}</td>
+                        <td>{{user.aptdatecreated}}</td>
+                        <td>{{user.aptdate}}</td>
+                        <td>
+                          <button type="button" class="btn btn-info" (click)="ViewAppointment.open()">View</button>
+                          <modal #ViewAppointment>
+                            <modal-header>
+                              <h1>{{user.name}}</h1>
+                            </modal-header>
+                            <modal-content>
+                              <div class="col-sm-6" style="display:inline-block">
+                                <ul class="list-group">
+                                  <li class="list-group-item">Name: {{user.name}}</li>
+                                  <li class="list-group-item">Username: {{user.username}}</li>
+                                  <li class="list-group-item">Email: {{user.email}}</li>
+                                  <li class="list-group-item">Address: {{user.address}}</li>
+                                  <li class="list-group-item">Gender: {{user.gender}}</li>
+                                  <li class="list-group-item">Age: {{user.age}}</li>
+                                </ul>
+                              </div>
+
+                              <div class="col-sm-6" style="display:inline-block">
+                                <ul class="list-group">
+                                  <li class="list-group-item">Date of Birth: {{user.dob}}</li>
+                                  <li class="list-group-item">Room No: </li>
+                                  <li class="list-group-item">Qualification: {{user.qualification}}</li>
+                                  <li class="list-group-item">Designation: {{user.designation}}</li>
+                                  <li class="list-group-item">Contact: {{user.contactnum}}</li>
+                                </ul>
+                              </div>
+                            </modal-content>
+                            <modal-footer>
+                            </modal-footer>
+                          </modal>
+                          <button type="button" class="btn btn-primary" (click)="EditAppointment.open()">Edit</button>
+                          <modal #EditAppointment (ngSubmit)="onUpdateUser(user)">
+                            <modal-header>
+                              <h1>Edit Profile</h1>
+                            </modal-header>
+                            <modal-content>
+                              <form #myForm="ngForm" (ngSubmit)="onUpdateUser(user)">
+                                <div class="col-sm-6" style="display:inline-block">
+                                  <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" [(ngModel)]="user.name" name="name" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Username</label>
+                                    <input type="text" [(ngModel)]="user.username" name="username" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Gender</label>
+                                    <input type="text" [(ngModel)]="user.gender" name="gender" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Age</label>
+                                    <input type="text" [(ngModel)]="user.age" name="age" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Qualification</label>
+                                    <input type="text" [(ngModel)]="user.qualification" name="qualification" class="form-control">
+                                  </div>
+                                </div>
+
+
+                                <div class="col-sm-6" style="display:inline-block">
+                                  <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" [(ngModel)]="user.email" name="email" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Address</label>
+                                    <input type="text" [(ngModel)]="user.address" name="address" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" [(ngModel)]="user.password" name="password" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Date of Birth</label>
+                                    <input type="text" [(ngModel)]="user.dob" name="dob" class="form-control">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Contact Number</label>
+                                    <input type="text" [(ngModel)]="user.contactnum" name="contactnum" class="form-control">
+                                  </div>
+                                </div>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                              </form>
+                            </modal-content>
+                            <modal-footer>
+
+                            </modal-footer>
+                          </modal>
+
+                          <button type="button" class="btn btn-danger" (click)="OnDeleteUser(user._id, i)">Delete</button>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </table>
+                </modal-content>
+                <modal-footer>
+                </modal-footer>
+              </modal>
+
             </div>
-                    <br />
-                    <div class="container">
+          </div>
+        </div>
+        <br />
+
+        <div class="panel-group">
+          <div class="panel panel-danger">
+            <div class="panel-heading">See Prescription</div>
+            <div class="panel-body">
+              <div class="container">
 
 
-                      <button type="button" class="btn btn-success btn-lg" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-                        <a [routerLink]="['/profile']">Go to Profile</a></button>
-                      
-                      <!-- Modal -->
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal">Click Here</button>
+
+               
+                <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal-dialog">
+
                     
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+
                   </div>
-              
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="container">
+
+
+          <button type="button" class="btn btn-success btn-lg" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+            <a [routerLink]="['/profile']">Go to Profile</a>
+          </button>
+
+         
+
+        </div>

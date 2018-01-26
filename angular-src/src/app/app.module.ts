@@ -26,6 +26,7 @@ import { AdminslistComponent } from './components/superadmin/adminslist/adminsli
 import { DoctorslistComponent } from './components/superadmin/doctorslist/doctorslist.component';
 import { PatientslistComponent } from './components/superadmin/patientslist/patientslist.component';
 import { AlluserslistComponent } from './components/superadmin/alluserslist/alluserslist.component';
+import { AptService } from './services/apt.service';
 
 
 const appRoutes : Routes = [
@@ -71,7 +72,7 @@ const appRoutes : Routes = [
     FlashMessagesModule.forRoot(),
     ModalModule
   ],
-  providers: [ValidateService, AuthService],
+  providers: [ValidateService, AuthService, AptService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

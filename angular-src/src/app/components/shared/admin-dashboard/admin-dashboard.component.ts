@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-
+import { AptService } from '../../../services/apt.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -9,21 +9,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
-user:any;
-data: Array<any> = [];
+  user:any;
+  appointment: any;
+  data: Array<any> = [];
   editItemsForm: boolean = false;
   name : String;
-  username: String;
-  email: String;
-  password: String;
-  userType: String;
-  dob: String;
-  contactnum: number;
-  age: number;
-  gender: String;
-  _id: any;
+  drname: String;
+  aptname: String;
+  aptDateCreated: any;
+  aptDate: any;
+  aptStatus: String;
+  aptType: String;
+  contactnum: String;
+
   constructor(
     private authService:AuthService,
+    private aptService:AptService,
     private router:Router
   ) { }
 
@@ -36,15 +37,34 @@ data: Array<any> = [];
       console.log(err);
       return false;
     });
-    this.authService.getAllProfile().subscribe((data) => {
+    this.aptService.getAllAppointments().subscribe((data) => {
       console.log(data);
-      this.data = data.getData;
+      this.data = data.getAppointmentData;
     },
     err => {
       console.log(err);
       return false;
     });
   }
+  onAppointmentSubmit(){
+    const appointment = {
+      name: this.name,
+      drname: this.drname,
+      aptStatus: this.aptStatus,
+      aptType: this.aptType,
+      aptDateCreated: this.aptDateCreated,
+      aptDate: this.aptDate,
+      contactnum: this.contactnum,
+    }
+    this.aptService.createApt(appointment).subscribe(data =>{
+      if(data.success){ 
+        this.router.navigate(['/dashboard']);
+      } else{    
+        this.router.navigate(['/dashboard']);
+      }
+    });
+  }
+
   onUpdateUser(user){     
     console.log(user, "_id")
     var url = "update" + "/" + user._id

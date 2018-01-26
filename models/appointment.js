@@ -1,25 +1,46 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const config = require('../config/database');
 
-//Create Appointment Schema using mongoose
-
-var SalarySchema = new mongoose.Schema({
-    username:
-    { type: String },
-    email: 
-    { type: String },
-    userType: 
-    { type: String },
-    submitionDate: 
-    { type: String },
-    employeeType: 
-    { type: String },
-    schoolID: 
-    { type: String },
-    salary: 
-    { type: String },
-    month: 
-    { type: String },
-    year: 
-    { type: String },
+// Appointment Schema
+const AppointmentSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  drname: {
+    type: String,
+    required: true,
+  },
+  aptType:{
+    type: String,
+    required: true,
+  },
+  aptStatus:{
+    type: String,
+    required: true,
+  },
+  aptDateCreated:{
+    type: Date,
+    default: Date.now
+  },
+  aptDate:{
+    type: Date,
+    required: true,
+  },
+  contactnum:{
+    type: String,
+    required: true,
+  },
 });
-const Salary = module.exports = mongoose.model('Salary', SalarySchema);
+
+const Appointment = module.exports = mongoose.model('Appointment', AppointmentSchema);
+
+module.exports.getUserById = function(id, callback){
+  Appointment.findById(id, callback);
+}
+
+module.exports.getUserByUsername = function(username, callback){
+  const query = {username: username}
+  Appointment.findOne(query, callback);
+}

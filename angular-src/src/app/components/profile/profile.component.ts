@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   age: number;
   gender: String;
   _id: any;
+  aptname: any;
 
   constructor(
     private authService:AuthService,
