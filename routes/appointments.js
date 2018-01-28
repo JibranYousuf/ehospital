@@ -51,18 +51,18 @@ router.get('/getall', (req, res, next) => {
     });
 });
 
-router.get('/getuser', function (req, res, next) {
+router.get('/getappointment', function (req, res, next) {
       
-    Appointment.findOne({ username: req.query.username },function (err, appointment) {
+    Appointment.findOne({ name: req.query.name },function (err, appointment) {
         if (err) {
-            console.log("username err", err)
+            console.log("patient name err", err)
             return res.status(500).send(err)
             // return err
         }
-        if(appointment.username !== req.query.username){
+        if(appointment.name !== req.query.name){
             return res.status(404).send('username invalid');
           }
-          console.log("You are Successfully Searched: Welcome ", appointment.username)
+          console.log("You are Successfully Searched: Welcome ", appointment.name)
           console.log("User_id: ", appointment._id)
           console.log("Appointment Password: ", appointment.password)
           console.log("You created account on: ", appointment.userType)
@@ -83,7 +83,7 @@ router.delete('/delete/:id', function (req, res) {
         if (err) { 
         return res.status(500).send("There was a problem deleting the appointment.");
     } else {
-        return res.status(200).send("Appointment "+ appointment.username +" was deleted.");
+        return res.status(200).send("Appointment "+ appointment.name +" was deleted.");
         res.json({ appointment: appointment });
     }
     });

@@ -1,5 +1,5 @@
 <app-superadmin></app-superadmin>
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>#</th>
@@ -15,7 +15,9 @@
         <td>{{user.username}}</td>
         <td>{{user.userType}}</td>
         <td>
-            <button type="button" class="btn btn-info" (click)="ViewProfile.open()">View</button>
+            
+            <p><span class="btn btn-info glyphicon glyphicon-user" (click)="ViewProfile.open()" ></span></p>
+            
             <modal #ViewProfile>
                 <modal-header>
                     <h1>{{user.name}}</h1>
@@ -45,13 +47,13 @@
                 <modal-footer>
                 </modal-footer>
             </modal>
-            <button type="button" class="btn btn-primary" (click)="EditUser.open()">Edit</button>
-            <modal #EditUser (ngSubmit)="onUpdateUser(user)">
+            <p><span class="btn btn-primary glyphicon glyphicon-edit" (click)="EditUser.open()"  ></span></p>
+            <modal #EditUser submitButtonLabel="Submit"  (onSubmit)="onUpdateUser(user)">
                 <modal-header>
                     <h1>Edit Profile</h1>
                 </modal-header>
                 <modal-content>
-                    <form #myForm="ngForm" (ngSubmit)="onUpdateUser(user)">
+                    <form #myForm="ngForm">
                         <div class="col-sm-6" style="display:inline-block">
                             <div class="form-group">
                                 <label>Name</label>
@@ -98,15 +100,13 @@
                                 <input type="text" [(ngModel)]="user.contactnum" name="contactnum" class="form-control">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success"  >Submit</button>
                     </form>
                 </modal-content>
                 <modal-footer>
                         
                 </modal-footer>
             </modal>
-
-            <button type="button" class="btn btn-danger" (click)="OnDeleteUser(user._id, i)">Delete</button>
+            <p><span class="btn btn-danger glyphicon glyphicon-trash" (click)="OnDeleteUser(user._id, i)" ></span></p>
         </td>
     </tr>
 </table>

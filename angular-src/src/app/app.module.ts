@@ -27,23 +27,23 @@ import { DoctorslistComponent } from './components/superadmin/doctorslist/doctor
 import { PatientslistComponent } from './components/superadmin/patientslist/patientslist.component';
 import { AlluserslistComponent } from './components/superadmin/alluserslist/alluserslist.component';
 import { AptService } from './services/apt.service';
-
+import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes : Routes = [
   {path:'', component : HomeComponent},
   {path:'register', component : RegisterComponent},
   {path:'login', component : LoginComponent},
-  {path:'dashboard', component : DashboardComponent},
-  {path:'profile', component : ProfileComponent},
-  {path: 'doctorDashboard', component : DoctorDashboardComponent}, 
-  {path: 'patientDashboard', component : PatientDashboardComponent},
-  {path: 'adminDashboard', component : AdminDashboardComponent},
-  {path: 'superadmin', component : SuperadminComponent},
-  {path: 'adminslist', component : AdminslistComponent},
-  {path: 'doctorslist', component : DoctorslistComponent},
-  {path: 'patientslist', component : PatientslistComponent},
-  {path: 'alluserslist', component : AlluserslistComponent}
-] 
+  {path:'dashboard', component : DashboardComponent, canActivate:[AuthGuard]},
+  {path:'profile', component : ProfileComponent, canActivate:[AuthGuard]},
+  {path: 'doctorDashboard', component : DoctorDashboardComponent, canActivate:[AuthGuard]}, 
+  {path: 'patientDashboard', component : PatientDashboardComponent, canActivate:[AuthGuard]},
+  {path: 'adminDashboard', component : AdminDashboardComponent, canActivate:[AuthGuard]},
+  {path: 'superadmin', component : SuperadminComponent, canActivate:[AuthGuard]},
+  {path: 'adminslist', component : AdminslistComponent, canActivate:[AuthGuard]},
+  {path: 'doctorslist', component : DoctorslistComponent, canActivate:[AuthGuard]},
+  {path: 'patientslist', component : PatientslistComponent, canActivate:[AuthGuard]},
+  {path: 'alluserslist', component : AlluserslistComponent, canActivate:[AuthGuard]}
+]
 
 @NgModule({
   declarations: [
@@ -63,7 +63,7 @@ const appRoutes : Routes = [
     PatientslistComponent,
     AlluserslistComponent
   ],
-  imports: [    
+  imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -72,7 +72,7 @@ const appRoutes : Routes = [
     FlashMessagesModule.forRoot(),
     ModalModule
   ],
-  providers: [ValidateService, AuthService, AptService],
+  providers: [ValidateService, AuthService, AptService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

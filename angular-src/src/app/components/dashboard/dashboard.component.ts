@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,15 +9,27 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   userType;
-  constructor() {
+  user: any;
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) 
+  {
     var userData = localStorage.getItem('user');
-    var user= JSON.parse(userData);
+    var user = JSON.parse(userData);
     console.log(user);
-    this.userType=user.userType;
-    
-  }
-  
-  ngOnInit() {
+    this.userType = user.userType;
+
   }
 
+  ngOnInit() {
+    this.authService.getProfile().subscribe(profile => {
+      console.log(profile);
+      this.user = profile.user;
+    },
+      err => {
+        console.log(err);
+        return false;
+      });
+  }
 }

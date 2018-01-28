@@ -9,7 +9,7 @@ import { get } from 'http';
 @Injectable()
 export class AptService {
   apppointment: any;
-  url = "http://localhost:3000/users/";
+  url = "http://localhost:3000/appointments/";
   _id: any;
   
   constructor( private http: Http,
@@ -34,7 +34,7 @@ export class AptService {
         // return data.json()
       })
   }
-  deleteUser(_id){
+  deleteAppointment(_id){
     let headers = new Headers();
     return this.http.delete(this.url+'delete/'+_id)
 }

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AptService } from '../../../services/apt.service';
+import { Response } from '@angular/http/src/static_response';
+import { ValidateService } from '../../../services/validate.service'
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -23,10 +26,13 @@ export class AdminDashboardComponent implements OnInit {
   contactnum: String;
 
   constructor(
+    private validateService: ValidateService, 
+    private flashMessage:FlashMessagesService,
     private authService:AuthService,
     private aptService:AptService,
     private router:Router
   ) { }
+  
 
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
@@ -36,7 +42,21 @@ export class AdminDashboardComponent implements OnInit {
     err => {
       console.log(err);
       return false;
+    });    
+  }
+
+  onView(){
+    this.authService.getAllProfile().subscribe((data) => {
+      console.log(data);
+      this.data = data.getData;
+    },
+    err => {
+      console.log(err);
+      return false;
     });
+  }
+
+  onAppointmentView(){
     this.aptService.getAllAppointments().subscribe((data) => {
       console.log(data);
       this.data = data.getAppointmentData;
@@ -46,6 +66,7 @@ export class AdminDashboardComponent implements OnInit {
       return false;
     });
   }
+  
   onAppointmentSubmit(){
     const appointment = {
       name: this.name,
@@ -56,11 +77,16 @@ export class AdminDashboardComponent implements OnInit {
       aptDate: this.aptDate,
       contactnum: this.contactnum,
     }
+    if(!this.validateService.validateAppointment(appointment)){
+      this.flashMessage.show('Please Fill in all fields', {cssClass: 'alert-danger', timeout: 3000})
+      return false;
+    }
+    
     this.aptService.createApt(appointment).subscribe(data =>{
       if(data.success){ 
         this.router.navigate(['/dashboard']);
       } else{    
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/profile']);
       }
     });
   }
@@ -81,8 +107,8 @@ export class AdminDashboardComponent implements OnInit {
       }
     )
   }
-  OnDeleteUser(_id, i: number){
-    this.authService.deleteUser(_id).subscribe(data=> {
+  OnDeleteAppointment(_id, i: number){
+    this.aptService.deleteAppointment(_id).subscribe(data=> {
       this.data.splice(i, 1)
       console.log(data,"data from db")
     },
