@@ -25,7 +25,7 @@
                                             <td>Email:</td>
                                             <td>{{user.email}}</td>
                                         </tr>
-                                        <tr>
+                                        <tr *ngIf="user.userType=='Doctor'">
                                             <td>Designation:</td>
                                             <td>{{user.designation}}</td>
                                         </tr>
@@ -46,8 +46,8 @@
 
 
                                         </tr>
-                                        <tr>
-                                            <td>Room No:</td>
+                                        <tr *ngIf="user.userType=='Doctor'">
+                                            <td >Room No:</td>
                                             <td></td>
 
 
