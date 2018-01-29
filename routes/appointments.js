@@ -83,7 +83,7 @@ router.delete('/delete/:id', function (req, res) {
         if (err) { 
         return res.status(500).send("There was a problem deleting the appointment.");
     } else {
-        return res.status(200).send("Appointment "+ appointment.name +" was deleted.");
+        return res.status(200).send("Appointment "+ appointment.drname +" was deleted.");
         res.json({ appointment: appointment });
     }
     });

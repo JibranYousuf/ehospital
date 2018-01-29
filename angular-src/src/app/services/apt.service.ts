@@ -24,7 +24,7 @@ export class AptService {
     .map(res => res.json());
   }
 
-  updateUser(url, data) {
+  updateAppointment(url, data) {
     let headers = new Headers();
     console.log(data, "data")
     return this.http.put(this.url+url, data, {headers: headers}).
@@ -47,10 +47,10 @@ export class AptService {
   }
 
   
-  getUser(username){
+  getAppointment(_id){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.get(this.url+'getUser/?username='+username, {headers: headers})
+    return this.http.get(this.url+'getAppointment/?_id='+_id, {headers: headers})
     .map(function (res) { return res.json(); }
     )}
   

@@ -15,6 +15,7 @@ export class AdminDashboardComponent implements OnInit {
   user:any;
   appointment: any;
   data: Array<any> = [];
+  aptData: Array<any> = [];
   editItemsForm: boolean = false;
   name : String;
   drname: String;
@@ -43,6 +44,14 @@ export class AdminDashboardComponent implements OnInit {
       console.log(err);
       return false;
     });    
+    this.authService.getAllProfile().subscribe((data) => {
+      console.log(data);
+      this.data = data.getData;
+    },
+    err => {
+      console.log(err);
+      return false;
+    });
   }
 
   onView(){
@@ -59,7 +68,7 @@ export class AdminDashboardComponent implements OnInit {
   onAppointmentView(){
     this.aptService.getAllAppointments().subscribe((data) => {
       console.log(data);
-      this.data = data.getAppointmentData;
+      this.aptData = data.getAppointmentData;
     },
     err => {
       console.log(err);
@@ -99,6 +108,21 @@ export class AdminDashboardComponent implements OnInit {
         console.log(data, "fgdfg");
         this.data = data.getData;
         this.authService.getUser(user.username);
+        this.editItemsForm = false;
+        
+      },
+      (err) => {
+        return err
+      }
+    )
+  }
+  onUpdateApt(appointment){     
+    console.log(appointment, "_id")
+    var url = "update" + "/" + appointment._id
+    this.aptService.updateAppointment(url, appointment).subscribe(
+      (data) => {
+        this.aptData = data.getAppointmentData;
+        this.aptService.getAppointment(appointment.username);
         this.editItemsForm = false;
         
       },

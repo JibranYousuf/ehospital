@@ -1,8 +1,8 @@
-  <div *ngIf="user">
-    <h1 style="color:green; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
-      Hello Admin: {{user.name}}
-    </h1>
-    <hr>
+<div *ngIf="user">
+  <h1 style="color:green; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+    Hello Admin: {{user.name}}
+  </h1>
+  <hr>
   <div class="container">
 
     <div class="row">
@@ -460,7 +460,10 @@
                       </div>
                       <div class="form-group">
                         <label>Doctor Name</label>
-                        <input type="text" [(ngModel)]="drname" name="drname" class="form-control">
+                        <select [(ngModel)]="drname" name="drname" class="form-control ">
+                          <option [ngValue]="undefined" disabled selected>Select Doctor</option>
+                          <option *ngFor="let user of data">{{user.name}}</option>
+                        </select>
                       </div>
                       <div class="form-group">
                         <label>Appointment Type</label>
@@ -506,49 +509,37 @@
                             <th>Patient Name</th>
                             <th>Doctor Name</th>
                             <th>Appointment Type</th>
-                            <th>Appointment Status</th>
-                            <th>Concact Number</th>
-                            <th>Appointment Date (Created)</th>
-                            <th>Appointment Date</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
 
-                        <tr *ngFor="let appointment of data; let i = index">
+                        <tr *ngFor="let appointment of aptData; let i = index">
 
                           <td>{{i + 1}}</td>
                           <td>{{appointment.name}}</td>
                           <td>{{appointment.drname}}</td>
                           <td>{{appointment.aptType}}</td>
-                          <td>{{appointment.aptStatus}}</td>
-                          <td>{{appointment.contactnum}}</td>
-                          <td>{{appointment.aptDateCreated}}</td>
-                          <td>{{appointment.aptDate}}</td>
                           <td>
                             <button type="button" class="btn btn-info" (click)="ViewAppointment.open()">View</button>
                             <modal #ViewAppointment>
                               <modal-header>
-                                <h1>{{user.name}}</h1>
+                                <h1>Patient Name: {{appointment.name}}</h1>
                               </modal-header>
                               <modal-content>
                                 <div class="col-sm-6" style="display:inline-block">
                                   <ul class="list-group">
-                                    <li class="list-group-item">Name: {{user.name}}</li>
-                                    <li class="list-group-item">Username: {{user.username}}</li>
-                                    <li class="list-group-item">Email: {{user.email}}</li>
-                                    <li class="list-group-item">Address: {{user.address}}</li>
-                                    <li class="list-group-item">Gender: {{user.gender}}</li>
-                                    <li class="list-group-item">Age: {{user.age}}</li>
+                                    <li class="list-group-item">Patient Name: {{appointment.name}}</li>
+                                    <li class="list-group-item">Doctor Name: {{appointment.drname}}</li>
+                                    <li class="list-group-item">Appointment Type: {{appointment.aptType}}</li>
+                                    <li class="list-group-item">Appointment Status: {{appointment.aptStatus}}</li>
                                   </ul>
                                 </div>
 
                                 <div class="col-sm-6" style="display:inline-block">
                                   <ul class="list-group">
-                                    <li class="list-group-item">Date of Birth: {{user.dob}}</li>
-                                    <li class="list-group-item">Room No: </li>
-                                    <li class="list-group-item">Qualification: {{user.qualification}}</li>
-                                    <li class="list-group-item">Designation: {{user.designation}}</li>
-                                    <li class="list-group-item">Contact: {{user.contactnum}}</li>
+                                    <li class="list-group-item">Appointment Creation Date: {{appointment.aptDateCreated}}</li>
+                                    <li class="list-group-item">Appointment Date: {{appointment.aptDate}}</li>
+                                    <li class="list-group-item">Contact Num: {{appointment.contactnum}}</li>
                                   </ul>
                                 </div>
                               </modal-content>
@@ -556,58 +547,35 @@
                               </modal-footer>
                             </modal>
                             <button type="button" class="btn btn-primary" (click)="EditAppointment.open()">Edit</button>
-                            <modal #EditAppointment (ngSubmit)="onUpdateUser(user)">
+                            <modal #EditAppointment (ngSubmit)="onUpdateApt(user)">
                               <modal-header>
                                 <h1>Edit Profile</h1>
                               </modal-header>
                               <modal-content>
-                                <form #myForm="ngForm" (ngSubmit)="onUpdateUser(user)">
+                                <form #myForm="ngForm" (ngSubmit)="onUpdateApt(appointment)">
                                   <div class="col-sm-6" style="display:inline-block">
                                     <div class="form-group">
                                       <label>Name</label>
-                                      <input type="text" [(ngModel)]="user.name" name="name" class="form-control">
+                                      <input type="text" [(ngModel)]="appointment.name" name="name" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                      <label>Username</label>
-                                      <input type="text" [(ngModel)]="user.username" name="username" class="form-control">
+                                      <label>Doctor Name</label>
+                                      <input type="text" [(ngModel)]="appointment.drname" name="drname" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                      <label>Gender</label>
-                                      <input type="text" [(ngModel)]="user.gender" name="gender" class="form-control">
+                                      <label>Appointment Type</label>
+                                      <input type="text" [(ngModel)]="appointment.aptType" name="apyType" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                      <label>Age</label>
-                                      <input type="text" [(ngModel)]="user.age" name="age" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Qualification</label>
-                                      <input type="text" [(ngModel)]="user.qualification" name="qualification" class="form-control">
-                                    </div>
-                                  </div>
-
-
-                                  <div class="col-sm-6" style="display:inline-block">
-                                    <div class="form-group">
-                                      <label>Email</label>
-                                      <input type="text" [(ngModel)]="user.email" name="email" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Address</label>
-                                      <input type="text" [(ngModel)]="user.address" name="address" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Password</label>
-                                      <input type="password" [(ngModel)]="user.password" name="password" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                      <label>Date of Birth</label>
-                                      <input type="text" [(ngModel)]="user.dob" name="dob" class="form-control">
+                                      <label>Appointment Status</label>
+                                      <input type="text" [(ngModel)]="appointment.aptStatus" name="aptStatus" class="form-control">
                                     </div>
                                     <div class="form-group">
                                       <label>Contact Number</label>
-                                      <input type="text" [(ngModel)]="user.contactnum" name="contactnum" class="form-control">
+                                      <input type="text" [(ngModel)]="appointment.contactnum" name="contactnum" class="form-control">
                                     </div>
                                   </div>
+
                                   <button type="submit" class="btn btn-success">Submit</button>
                                 </form>
                               </modal-content>
@@ -651,10 +619,10 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
+                        <h4 class="modal-title">Hospital Managment</h4>
                       </div>
                       <div class="modal-body">
-                        <p>Some text in the modal.</p>
+                        <p>Feature Coming Soon</p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -687,10 +655,10 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
+                        <h4 class="modal-title">Finance Management</h4>
                       </div>
                       <div class="modal-body">
-                        <p>Some text in the modal.</p>
+                        <p>Feature Coming Soon</p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -707,4 +675,4 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
