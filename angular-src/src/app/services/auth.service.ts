@@ -100,5 +100,20 @@ getAllDoc(){
   .map(function (res) { return res.json(); }
 );
 }
-
+getAllPatient(){
+  let headers = new Headers();
+  headers.append('Content-Type','application/json');
+  return this.http.get('http://localhost:3000/users/getpatient', {headers: headers})
+  
+  .map(function (res) { return res.json(); }
+);
+}
+getAllAdmin(){
+  let headers = new Headers();
+  headers.append('Content-Type','application/json');
+  return this.http.get('http://localhost:3000/users/getadmin', {headers: headers})
+  
+  .map(function (res) { return res.json(); }
+);
+}
 }

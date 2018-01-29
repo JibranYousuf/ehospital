@@ -105,6 +105,43 @@ router.get('/getdoc', (req, res, next) => {
     });
 });
 
+router.get('/getpatient', (req, res, next) => {
+    User.find({userType: 'Patient'},function(err, getPatientData) {
+
+        // if there is an error retrieving, send the error. 
+                        // nothing after res.send(err) will execute
+        if (err)
+            res.send(err);
+        else{
+        res.json({ getPatientData: getPatientData }); 
+    }
+    });
+});
+router.get('/getstaff', (req, res, next) => {
+    User.find({userType: 'Staff'},function(err, getStaffData) {
+
+        // if there is an error retrieving, send the error. 
+                        // nothing after res.send(err) will execute
+        if (err)
+            res.send(err);
+        else{
+        res.json({ getStaffData: getStaffData }); 
+    }
+    });
+});
+router.get('/getadmin', (req, res, next) => {
+    User.find({userType: 'Admin'},function(err, getAdminData) {
+
+        // if there is an error retrieving, send the error. 
+                        // nothing after res.send(err) will execute
+        if (err)
+            res.send(err);
+        else{
+        res.json({ getAdminData: getAdminData }); 
+    }
+    });
+});
+
 router.get('/getuser', function (req, res, next) {
       
     User.findOne({ username: req.query.username },function (err, user) {

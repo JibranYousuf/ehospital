@@ -17,6 +17,7 @@ export class AdminDashboardComponent implements OnInit {
   user:any;
   appointment: any;
   doctorData: Array<any> =[];
+  patientData: Array<any> =[];
   data: Array<any> = [];
   aptData: Array<any> = [];
   editItemsForm: boolean = false;
@@ -63,7 +64,16 @@ export class AdminDashboardComponent implements OnInit {
       console.log(err);
       return false;
     });
+    this.authService.getAllPatient().subscribe((patientdata) => {
+      console.log(patientdata);
+      this.patientData = patientdata.getPatientData;
+    },
+    err => {
+      console.log(err);
+      return false;
+    });
   }
+  
 
   onView(){
     this.authService.getAllProfile().subscribe((data) => {

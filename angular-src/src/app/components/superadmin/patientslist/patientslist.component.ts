@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class PatientslistComponent implements OnInit {
 
   data: Array<any> = [];
+  patientData: Array<any> = [];
+  
   constructor(
     private authService:AuthService,
     private router:Router)
@@ -18,9 +20,9 @@ export class PatientslistComponent implements OnInit {
   
 
     ngOnInit() {
-      this.authService.getAllProfile().subscribe((data) => {
-        console.log(data);
-        this.data = data.getData;
+      this.authService.getAllPatient().subscribe((patientdata) => {
+        console.log(patientdata);
+        this.patientData = patientdata.getPatientData;
       },
       err => {
         console.log(err);

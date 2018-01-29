@@ -11,6 +11,8 @@ import { Response } from '@angular/http/src/static_response';
 })
 export class DoctorslistComponent implements OnInit {
   data: Array<any> = [];
+  doctorData: Array<any> = [];
+
   constructor(
     private authService:AuthService,
     private router:Router)
@@ -19,14 +21,15 @@ export class DoctorslistComponent implements OnInit {
   
 
     ngOnInit() {
-      this.authService.getAllProfile().subscribe((data) => {
-        console.log(data);
-        this.data = data.getData;
+      this.authService.getAllDoc().subscribe((docdata) => {
+        console.log(docdata);
+        this.doctorData = docdata.getDocData;
       },
       err => {
         console.log(err);
         return false;
       });
     }
+    
 
 }

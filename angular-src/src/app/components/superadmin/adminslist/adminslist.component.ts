@@ -12,8 +12,8 @@ import { Response } from '@angular/http/src/static_response';
 
 
 export class AdminslistComponent implements OnInit {
-  data: Array<any> = [];
-  userFilter: any = { userType: '' };
+  adminData: Array<any> = [];
+  
   constructor(
     private authService:AuthService,
     private router:Router)
@@ -21,9 +21,9 @@ export class AdminslistComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.authService.getAllProfile().subscribe((data) => {
-      console.log(data);
-      this.data = data.getData;
+    this.authService.getAllAdmin().subscribe((admindata) => {
+      console.log(admindata);
+      this.adminData = admindata.getAdminData;
     },
     err => {
       console.log(err);

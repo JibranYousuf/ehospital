@@ -1,6 +1,6 @@
 <div *ngIf="user">
   <h1 style="color:green; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
-    Hello Admin: {{user.name}}
+    Welcome to Dashboard: {{user.name}}
   </h1>
   <hr>
   <div class="container">
@@ -32,8 +32,8 @@
                           <th>Actions</th>
                         </tr>
                       </thead>
-                      <ng-container *ngFor="let user of data; let i = index">
-                        <tr *ngIf="user.userType=='Patient'">
+                      
+                        <tr *ngFor="let user of patientData; let i = index">
 
                           <td>{{i + 1}}</td>
                           <td>{{user.name}}</td>
@@ -134,7 +134,6 @@
                             <button type="button" class="btn btn-danger" (click)="OnDeleteUser(user._id, i)">Delete</button>
                           </td>
                         </tr>
-                      </ng-container>
                     </table>
                   </modal-content>
                   <modal-footer>
@@ -161,7 +160,7 @@
                 <!-- Modal -->
                 <modal #ViewDoctors>
                   <modal-header>
-                    <h1>View Patients</h1>
+                    <h1>View Doctors</h1>
                   </modal-header>
                   <modal-content>
                     <table class="table">
@@ -174,8 +173,8 @@
                           <th>Actions</th>
                         </tr>
                       </thead>
-                      <ng-container *ngFor="let user of data; let i = index">
-                        <tr *ngIf="user.userType=='Doctor'">
+                      
+                        <tr *ngFor="let user of doctorData; let i = index">
 
                           <td>{{i + 1}}</td>
                           <td>{{user.name}}</td>
@@ -276,7 +275,6 @@
                             <button type="button" class="btn btn-danger" (click)="OnDeleteUser(user._id, i)">Delete</button>
                           </td>
                         </tr>
-                      </ng-container>
                     </table>
                   </modal-content>
                   <modal-footer>
@@ -457,7 +455,10 @@
                     <form (submit)="onAppointmentSubmit()">
                       <div class="form-group">
                         <label>Name</label>
-                        <input type="text" [(ngModel)]="name" name="name" class="form-control">
+                        <select [(ngModel)]="name" name="name" class="form-control ">
+                            <option [ngValue]="undefined" disabled selected>Select Patient</option>
+                            <option *ngFor="let user of patientData">{{user.name}}</option>
+                          </select>
                       </div>
                       <div class="form-group">
                         <label>Doctor Name</label>

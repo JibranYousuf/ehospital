@@ -16,7 +16,7 @@
         <td>{{user.userType}}</td>
         <td>
             
-            <p><span class="btn btn-info glyphicon glyphicon-user" (click)="ViewProfile.open()" ></span></p>
+            <span class="btn btn-info glyphicon glyphicon-user" (click)="ViewProfile.open()" ></span>
             
             <modal #ViewProfile>
                 <modal-header>
@@ -47,7 +47,7 @@
                 <modal-footer>
                 </modal-footer>
             </modal>
-            <p><span class="btn btn-primary glyphicon glyphicon-edit" (click)="EditUser.open()"  ></span></p>
+            <span class="btn btn-primary glyphicon glyphicon-edit" (click)="EditUser.open()"  ></span>
             <modal #EditUser submitButtonLabel="Submit"  (onSubmit)="onUpdateUser(user)">
                 <modal-header>
                     <h1>Edit Profile</h1>
@@ -88,10 +88,6 @@
                                 <input type="text" [(ngModel)]="user.address" name="address" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" [(ngModel)]="user.password" name="password" class="form-control">
-                            </div>
-                            <div class="form-group">
                                 <label>Date of Birth</label>
                                 <input type="text" [(ngModel)]="user.dob" name="dob" class="form-control">
                             </div>
@@ -106,7 +102,7 @@
                         
                 </modal-footer>
             </modal>
-            <p><span class="btn btn-danger glyphicon glyphicon-trash" (click)="OnDeleteUser(user._id, i)" ></span></p>
+            <span class="btn btn-danger glyphicon glyphicon-trash" (click)="OnDeleteUser(user._id, i)" ></span>
         </td>
     </tr>
 </table>
