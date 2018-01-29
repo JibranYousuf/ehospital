@@ -92,6 +92,19 @@ router.get('/getall', (req, res, next) => {
     });
 });
 
+router.get('/getdoc', (req, res, next) => {
+    User.find({userType: 'Doctor'},function(err, getDocData) {
+
+        // if there is an error retrieving, send the error. 
+                        // nothing after res.send(err) will execute
+        if (err)
+            res.send(err);
+        else{
+        res.json({ getDocData: getDocData }); 
+    }
+    });
+});
+
 router.get('/getuser', function (req, res, next) {
       
     User.findOne({ username: req.query.username },function (err, user) {

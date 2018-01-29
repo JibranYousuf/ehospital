@@ -21,6 +21,7 @@
                     <h1>View Patients</h1>
                   </modal-header>
                   <modal-content>
+                    
                     <table class="table">
                       <thead>
                         <tr>
@@ -462,7 +463,7 @@
                         <label>Doctor Name</label>
                         <select [(ngModel)]="drname" name="drname" class="form-control ">
                           <option [ngValue]="undefined" disabled selected>Select Doctor</option>
-                          <option *ngFor="let user of data">{{user.name}}</option>
+                          <option *ngFor="let user of doctorData">{{user.name}}</option>
                         </select>
                       </div>
                       <div class="form-group">

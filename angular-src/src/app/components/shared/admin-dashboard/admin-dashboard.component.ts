@@ -5,6 +5,7 @@ import { AptService } from '../../../services/apt.service';
 import { Response } from '@angular/http/src/static_response';
 import { ValidateService } from '../../../services/validate.service'
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { FilterPipe } from '../../../pipes/filter.pipe';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -12,8 +13,10 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
+  filter: any;
   user:any;
   appointment: any;
+  doctorData: Array<any> =[];
   data: Array<any> = [];
   aptData: Array<any> = [];
   editItemsForm: boolean = false;
@@ -47,6 +50,14 @@ export class AdminDashboardComponent implements OnInit {
     this.authService.getAllProfile().subscribe((data) => {
       console.log(data);
       this.data = data.getData;
+    },
+    err => {
+      console.log(err);
+      return false;
+    });
+    this.authService.getAllDoc().subscribe((docdata) => {
+      console.log(docdata);
+      this.doctorData = docdata.getDocData;
     },
     err => {
       console.log(err);

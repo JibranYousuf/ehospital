@@ -26,6 +26,7 @@ import { AdminslistComponent } from './components/superadmin/adminslist/adminsli
 import { DoctorslistComponent } from './components/superadmin/doctorslist/doctorslist.component';
 import { PatientslistComponent } from './components/superadmin/patientslist/patientslist.component';
 import { AlluserslistComponent } from './components/superadmin/alluserslist/alluserslist.component';
+import { FilterPipe } from './pipes/filter.pipe';
 import { AptService } from './services/apt.service';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -61,7 +62,8 @@ const appRoutes : Routes = [
     AdminslistComponent,
     DoctorslistComponent,
     PatientslistComponent,
-    AlluserslistComponent
+    AlluserslistComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

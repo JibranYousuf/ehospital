@@ -92,5 +92,13 @@ export class AuthService {
     .map(function (res) { return res.json(); }
   );
 }
+getAllDoc(){
+  let headers = new Headers();
+  headers.append('Content-Type','application/json');
+  return this.http.get('http://localhost:3000/users/getdoc', {headers: headers})
+  
+  .map(function (res) { return res.json(); }
+);
+}
 
 }
