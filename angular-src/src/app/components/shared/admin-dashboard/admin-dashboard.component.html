@@ -40,7 +40,7 @@
                           <td>{{user.username}}</td>
                           <td>{{user.userType}}</td>
                           <td>
-                            <button type="button" class="btn btn-info" (click)="ViewPatientProfile.open()">View</button>
+                            <button type="button" class="btn btn-info glyphicon glyphicon-user" (click)="ViewPatientProfile.open()"></button>
                             <modal #ViewPatientProfile>
                               <modal-header>
                                 <h1>{{user.name}}</h1>
@@ -70,7 +70,7 @@
                               <modal-footer>
                               </modal-footer>
                             </modal>
-                            <button type="button" class="btn btn-primary" (click)="EditPatientProfile.open()">Edit</button>
+                            <button type="button" class="btn btn-primary  glyphicon glyphicon-edit" (click)="EditPatientProfile.open()"></button>
                             <modal #EditPatientProfile (ngSubmit)="onUpdateUser(user)">
                               <modal-header>
                                 <h1>Edit Profile</h1>
@@ -131,7 +131,7 @@
                               </modal-footer>
                             </modal>
 
-                            <button type="button" class="btn btn-danger" (click)="OnDeleteUser(user._id, i)">Delete</button>
+                            <button type="button" class="btn btn-danger  glyphicon glyphicon-trash" (click)="OnDeleteUser(user._id, i)"></button>
                           </td>
                         </tr>
                     </table>
@@ -181,7 +181,7 @@
                           <td>{{user.username}}</td>
                           <td>{{user.userType}}</td>
                           <td>
-                            <button type="button" class="btn btn-info" (click)="ViewDoctorProfile.open()">View</button>
+                            <button type="button" class="btn btn-info  glyphicon glyphicon-user" (click)="ViewDoctorProfile.open()"></button>
                             <modal #ViewDoctorProfile>
                               <modal-header>
                                 <h1>{{user.name}}</h1>
@@ -211,7 +211,7 @@
                               <modal-footer>
                               </modal-footer>
                             </modal>
-                            <button type="button" class="btn btn-primary" (click)="EditDoctorProfile.open()">Edit</button>
+                            <button type="button" class="btn btn-primary  glyphicon glyphicon-edit" (click)="EditDoctorProfile.open()"></button>
                             <modal #EditDoctorProfile (ngSubmit)="onUpdateUser(user)">
                               <modal-header>
                                 <h1>Edit Profile</h1>
@@ -272,7 +272,7 @@
                               </modal-footer>
                             </modal>
 
-                            <button type="button" class="btn btn-danger" (click)="OnDeleteUser(user._id, i)">Delete</button>
+                            <button type="button" class="btn btn-danger  glyphicon glyphicon-trash" (click)="OnDeleteUser(user._id, i)"></button>
                           </td>
                         </tr>
                     </table>
@@ -323,7 +323,7 @@
                           <td>{{user.username}}</td>
                           <td>{{user.userType}}</td>
                           <td>
-                            <button type="button" class="btn btn-info" (click)="ViewStaffProfile.open()">View</button>
+                            <button type="button" class="btn btn-info  glyphicon glyphicon-user" (click)="ViewStaffProfile.open()"></button>
                             <modal #ViewStaffProfile>
                               <modal-header>
                                 <h1>{{user.name}}</h1>
@@ -353,7 +353,7 @@
                               <modal-footer>
                               </modal-footer>
                             </modal>
-                            <button type="button" class="btn btn-primary" (click)="EditStaffProfile.open()">Edit</button>
+                            <button type="button" class="btn btn-primary  glyphicon glyphicon-edit" (click)="EditStaffProfile.open()"></button>
                             <modal #EditStaffProfile (ngSubmit)="onUpdateUser(user)">
                               <modal-header>
                                 <h1>Edit Staff Profile</h1>
@@ -414,7 +414,7 @@
                               </modal-footer>
                             </modal>
 
-                            <button type="button" class="btn btn-danger" (click)="OnDeleteUser(user._id, i)">Delete</button>
+                            <button type="button" class="btn btn-danger  glyphicon glyphicon-trash" (click)="OnDeleteUser(user._id, i)"></button>
                           </td>
                         </tr>
                       </ng-container>
@@ -522,7 +522,7 @@
                           <td>{{appointment.drname}}</td>
                           <td>{{appointment.aptType}}</td>
                           <td>
-                            <button type="button" class="btn btn-info" (click)="ViewAppointment.open()">View</button>
+                            <button type="button" class="btn btn-info  glyphicon glyphicon-user" (click)="ViewAppointment.open()"></button>
                             <modal #ViewAppointment>
                               <modal-header>
                                 <h1>Patient Name: {{appointment.name}}</h1>
@@ -548,7 +548,7 @@
                               <modal-footer>
                               </modal-footer>
                             </modal>
-                            <button type="button" class="btn btn-primary" (click)="EditAppointment.open()">Edit</button>
+                            <button type="button" class="btn btn-primary  glyphicon glyphicon-edit" (click)="EditAppointment.open()"></button>
                             <modal #EditAppointment (ngSubmit)="onUpdateApt(user)">
                               <modal-header>
                                 <h1>Edit Profile</h1>
@@ -586,7 +586,7 @@
                               </modal-footer>
                             </modal>
 
-                            <button type="button" class="btn btn-danger" (click)="OnDeleteAppointment(appointment._id, i)">Delete</button>
+                            <button type="button" class="btn btn-danger  glyphicon glyphicon-trash" (click)="OnDeleteAppointment(appointment._id, i)"></button>
                           </td>
                         </tr>
 
