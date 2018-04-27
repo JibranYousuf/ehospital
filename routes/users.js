@@ -8,11 +8,12 @@ const User = require('../models/user');
 //Register
 router.post('/register', (req,res,next) =>{
 let newUser = new User({
-    name: req.body.name,
-    email: req.body.email,
-    username: req.body.username,
+    constName: req.body.constName,
+    constEmail: req.body.constEmail,
+    constUsername: req.body.constUsername,
     password: req.body.password,
-    userType: req.body.userType
+    constUserType: req.body.constUserType,
+    constCnic: req.body.constCnic,
 });
     User.addUser(newUser, (err, user)=>{
         if(err){
@@ -33,9 +34,9 @@ let newUser = new User({
 //Authenticate
 router.post('/authenticate', (req,res) =>{
    
-        const username = req.body.username;
+        const constCnic = req.body.constCnic;
         const password = req.body.password; 
-        User.getUserByUsername(username, (err, user) =>{
+        User.getUserByCnic(constCnic, (err, user) =>{
         if(err) throw err;
         if(!user){
             return res.json({
@@ -47,11 +48,12 @@ router.post('/authenticate', (req,res) =>{
             if(isMatch){
                 let payload = {
                     _id: user._id,
-                    name: user.name,
-                    username: user.username,
-                    email: user.email,
+                    constName: user.constName,
+                    constUsername: user.constUsername,
+                    constEmail: user.constEmail,
                     password: user.password,
-                    userType: user.userType
+                    constUserType: user.constUserType,
+                    constCnic: user.constCnic
                 };
                 const token = jwt.sign(payload, config.secret, {
                     expiresIn: 604800  //1 week
@@ -61,10 +63,11 @@ router.post('/authenticate', (req,res) =>{
                     token: 'bearer '+ token,
                     user: {
                         id: user._id,
-                        name: user.name,
-                        username: user.username,
-                        email : user.email,
-                        userType : user.userType,
+                        constName: user.constName,
+                        constUsername: user.constUsername,
+                        constEmail : user.constEmail,
+                        constUserType : user.constUserType,
+                        constCnic: user.constCnic
                     }
                 });
             } else {
@@ -79,6 +82,19 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res,
     res.json({user: req.user});
   });
 
+router.get('/get', (req, res, next) => {
+    User.findOne(function(err, getData) {
+
+        // if there is an error retrieving, send the error. 
+                        // nothing after res.send(err) will execute
+        if (err)
+            res.send(err);
+        else{
+        res.json({ getData: getData }); 
+    }
+    });
+});
+
 router.get('/getall', (req, res, next) => {
     User.find(function(err, getData) {
 
@@ -92,71 +108,23 @@ router.get('/getall', (req, res, next) => {
     });
 });
 
-router.get('/getdoc', (req, res, next) => {
-    User.find({userType: 'Doctor'},function(err, getDocData) {
-
-        // if there is an error retrieving, send the error. 
-                        // nothing after res.send(err) will execute
-        if (err)
-            res.send(err);
-        else{
-        res.json({ getDocData: getDocData }); 
-    }
-    });
-});
-
-router.get('/getpatient', (req, res, next) => {
-    User.find({userType: 'Patient'},function(err, getPatientData) {
-
-        // if there is an error retrieving, send the error. 
-                        // nothing after res.send(err) will execute
-        if (err)
-            res.send(err);
-        else{
-        res.json({ getPatientData: getPatientData }); 
-    }
-    });
-});
-router.get('/getstaff', (req, res, next) => {
-    User.find({userType: 'Staff'},function(err, getStaffData) {
-
-        // if there is an error retrieving, send the error. 
-                        // nothing after res.send(err) will execute
-        if (err)
-            res.send(err);
-        else{
-        res.json({ getStaffData: getStaffData }); 
-    }
-    });
-});
-router.get('/getadmin', (req, res, next) => {
-    User.find({userType: 'Admin'},function(err, getAdminData) {
-
-        // if there is an error retrieving, send the error. 
-                        // nothing after res.send(err) will execute
-        if (err)
-            res.send(err);
-        else{
-        res.json({ getAdminData: getAdminData }); 
-    }
-    });
-});
-
-router.get('/getuser', function (req, res, next) {
+router.get('/getuser/:constUsername', function (req, res, next) {
       
-    User.findOne({ username: req.query.username },function (err, user) {
+    User.findOne({ constUsername: req.params.constUsername })
+    .populate('Challan')
+    .exec ((err, user) => {
         if (err) {
-            console.log("username err", err)
+            console.log("constUsername err", err)
             return res.status(500).send(err)
             // return err
         }
-        if(user.username !== req.query.username){
-            return res.status(404).send('username invalid');
+        if(user.constUsername !== req.params.constUsername){
+            return res.status(404).send('constUsername invalid');
           }
-          console.log("You are Successfully Searched: Welcome ", user.username)
+          console.log("You are Successfully Searched: Welcome ", user.constUsername)
           console.log("User_id: ", user._id)
           console.log("User Password: ", user.password)
-          console.log("You created account on: ", user.userType)
+          console.log("You created account on: ", user.constUserType)
                return res.status(200).send(user);
   });
 })
@@ -171,11 +139,11 @@ router.put('/update/:id', function (req, res, next) {
 });
 
 router.delete('/delete/:id', function (req, res) {
-    User.findByIdAndRemove(req.params.id, function (err, user) {
+    User.findby(req.params.id, function (err, user) {
         if (err) { 
         return res.status(500).send("There was a problem deleting the user.");
     } else {
-        return res.status(200).send("User "+ user.username +" was deleted.");
+        return res.status(200).send("User "+ user.constUsername +" was deleted.");
         res.json({ user: user });
     }
     });

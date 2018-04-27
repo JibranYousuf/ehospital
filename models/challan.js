@@ -2,45 +2,40 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
-// Appointment Schema
-const AppointmentSchema = mongoose.Schema({
-  name: {
+// Challan Schema
+var Schema = mongoose.Schema;
+const ChallanSchema = Schema({
+  challanNo: {
     type: String,
     required: true
   },
-  drname: {
+  challanType: {
     type: String,
     required: true,
   },
-  aptType:{
+  challanDateCreated:{
     type: String,
     required: true,
   },
-  aptStatus:{
+  challanDatePaid:{
     type: String,
-    required: true,
-  },
-  aptDateCreated:{
-    type: Date,
-    default: Date.now
-  },
-  aptDate:{
-    type: Date,
     required: true,
   },
   contactnum:{
     type: String,
     required: true,
   },
+  user: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+
 });
 
-const Appointment = module.exports = mongoose.model('Appointment', AppointmentSchema);
+const Challan = module.exports = mongoose.model('Challan', ChallanSchema);
 
 module.exports.getUserById = function(id, callback){
-  Appointment.findById(id, callback);
+  Challan.findById(id, callback);
 }
 
 module.exports.getUserByUsername = function(username, callback){
   const query = {username: username}
-  Appointment.findOne(query, callback);
+  Challan.findOne(query, callback);
 }

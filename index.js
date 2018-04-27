@@ -8,7 +8,11 @@ const config = require('./config/database')
 // const MongoClient = require('mongodb').MongoClient
 //Connect to Database
 mongoose.Promise = global.Promise;
-mongoose.connect(config.database);
+mongoose.connect(config.database, function(err, db) {
+  if(!err) {
+    console.log("We are connected");
+  }
+});
 useMongoClient: true
 
 //On Connection
@@ -24,7 +28,7 @@ mongoose.connection.on('error', (err)=> {
 const app = express();
 
 const users = require('./routes/users');
-const appointments = require('./routes/appointments');
+const challans = require('./routes/challans');
 const port = 3000;
 
 // CORS Middleware
@@ -43,7 +47,7 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 app.use('/users', users);
-app.use('/appointments', appointments);
+app.use('/challans', challans);
 
 // Index Route
 app.get('/', (req,res) =>{

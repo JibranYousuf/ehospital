@@ -2,23 +2,22 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
-// User Schema
-var Schema = mongoose.Schema;
-const UserSchema = Schema({
-  constName: {
+// Citizen Schema
+const CitizenSchema = mongoose.Schema({
+  name: {
     type: String
   },
-  constEmail: {
+  email: {
     type: String,
     required: true,
     unique: true
   },
-  constUsername: {
+  username: {
     type: String,
     required: true,
     unique: true
   },
-  constCnic: {
+  cnic: {
     type: String,
     required: true,
     unique: true
@@ -27,45 +26,54 @@ const UserSchema = Schema({
     type: String,
     required: true
   },
-  constUserType:{
+  userType:{
     type: String,
     required: true,
   },
-  constAddress:{
+  address:{
     type: String,
   },
-  constGender:{
+  gender:{
     type: String,
   },
-  constAge:{
+  age:{
     type: String,
   },
-  constDob:{
+  dob:{
     type: String,
   },
-  constContactNum:{
+  contactnum:{
     type: String,
   },
-  constQualification:{
+  qualification:{
     type: String,
   },
-  constDesignation:{
+  designation:{
     type: String,
   },
-  challan: [{
-    type: Schema.Types.ObjectId, ref: 'Challan'
+  licenseNo:{
+    type: String,
+  },
+  challans:[
+    {
+    licenseNo:String,
+    challanNo:String,
+    challanType: String,
+    challanDateCreated:String,
+    challanDatePaid:String,
+    contactnum:String
   }]
 });
 
-const User = module.exports = mongoose.model('User', UserSchema);
+const Citizen = module.exports = mongoose.model('Citizen', CitizenSchema);
 
 module.exports.getUserById = function(id, callback){
-  User.findById(id, callback);
+  Citizen.findById(id, callback);
 }
 
-module.exports.getUserByCnic = function(constCnic, callback){
-  const query = {constCnic: constCnic}
-  User.findOne(query, callback);
+module.exports.getUserByUsername = function(username, callback){
+  const query = {username: username}
+  Citizen.findOne(query, callback);
 }
 
 module.exports.addUser = function(newUser, callback){
